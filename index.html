@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atualizações da Semana</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #a3a3a323;
+  }
+  #carousel-container {
+    position: relative;
+    max-width: 600px;
+    height: 800px;
+    overflow: hidden;
+    margin: 50px auto;
+  }
+  #image-carousel {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+  }
+  .carousel-image {
+    width: 100%;
+    height: auto;
+  }
+  #carousel-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  .carousel-button {
+    padding: 10px;
+    background-color: rgba(51, 51, 51, 0.25);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  #exit-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.25);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<button id="exit-button" >Sair</button>
+<div id="carousel-container">
+  <div id="image-carousel">
+    <img class="carousel-image" src="https://images.musement.com/cover/0001/100/predator-v5-jpg_header-99107.jpeg" alt="Imagem 1">
+    <img class="carousel-image" src="https://www.ddtoursdubai.com/images/gallery/IMG-Worlds-of-Adventure-Ramadan-Promotions-Image.jpg" alt="Imagem 2">
+    <img class="carousel-image" src="https://www.ddtoursdubai.com/images/gallery/IMG-Worlds-of-Adventure-Ramadan-Promotions-Image.jpg" alt="Imagem 2">
+    <img class="carousel-image" src="https://www.ddtoursdubai.com/images/gallery/IMG-Worlds-of-Adventure-Ramadan-Promotions-Image.jpg" alt="Imagem 2">
+  </div>
+  <div id="carousel-buttons">
+    <button class="carousel-button" id="prevButton">Anterior</button>
+    <button class="carousel-button" id="nextButton">Próxima</button>
+  </div>
+</div>
+<script>
+  const carousel = document.getElementById('image-carousel');
+  const prevButton = document.getElementById('prevButton');
+  const nextButton = document.getElementById('nextButton');
+  const exitButton = document.getElementById('exit-button');
+  const totalImages = document.querySelectorAll('.carousel-image').length;
+
+  let currentIndex = 0;
+
+  prevButton.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+    updateCarousel();
+  });
+
+  nextButton.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % totalImages;
+    updateCarousel();
+  });
+
+  exitButton.addEventListener('click', () => {
+    window.location.href = "https://www.google.com"
+  });
+
+  function updateCarousel() {
+    const offset = -currentIndex * 100;
+    carousel.style.transform = `translateX(${offset}%)`;
+  }
+</script>
+</body>
+</html>
